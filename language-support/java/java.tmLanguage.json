@@ -1,8 +1,7 @@
 {
 	"information_for_contributors": [
 		"This file has been copied from https://github.com/microsoft/vscode/blob/b37252c18238fffcebdc9fd7680f1dabea3a50a0/extensions/java/syntaxes/java.tmLanguage.json",
-		"The source location lists https://github.com/atom/language-java/blob/29f977dc42a7e2568b39bb6fb34c4ef108eb59b3/LICENSE.md as the original repository. It is therefore licensed under MIT.",
-		"Identifier pattern: (?![0-9])[a-zA-Z_$][a-zA-Z0-9_$]* - supports dollar signs as per Java specification"
+		"The source location lists https://github.com/atom/language-java/blob/29f977dc42a7e2568b39bb6fb34c4ef108eb59b3/LICENSE.md as the original repository. It is therefore licensed under MIT."
 	],
 	"name": "Java",
 	"scopeName": "source.java",
@@ -39,7 +38,7 @@
 					"name": "invalid.deprecated.package_name_not_lowercase.java"
 				},
 				{
-					"match": "(?x)\\b(?<!\\$)\n(abstract|assert|boolean|break|byte|case|catch|char|class|\nconst|continue|default|do|double|else|enum|extends|final|\nfinally|float|for|goto|if|implements|import|i[...]
+					"match": "(?x)\\b(?<!\\$)\n(abstract|assert|boolean|break|byte|case|catch|char|class|\nconst|continue|default|do|double|else|enum|extends|final|\nfinally|float|for|goto|if|implements|import|instanceof|int|\ninterface|long|native|new|null|package|private|protected|public|\nreturn|short|static|strictfp|super|switch|synchronized|this|throw|\nthrows|transient|try|void|volatile|while)\\b",
 					"name": "invalid.illegal.character_not_allowed_here.java"
 				},
 				{
@@ -83,7 +82,7 @@
 					"name": "invalid.illegal.character_not_allowed_here.java"
 				},
 				{
-					"match": "(?x)\\b(?<!\\$)\n(abstract|assert|boolean|break|byte|case|catch|char|class|\nconst|continue|default|do|double|else|enum|extends|final|\nfinally|float|for|goto|if|implements|import|i[...]
+					"match": "(?x)\\b(?<!\\$)\n(abstract|assert|boolean|break|byte|case|catch|char|class|\nconst|continue|default|do|double|else|enum|extends|final|\nfinally|float|for|goto|if|implements|import|instanceof|int|\ninterface|long|native|new|null|package|private|protected|public|\nreturn|short|static|strictfp|super|switch|synchronized|this|throw|\nthrows|transient|try|void|volatile|while)\\b",
 					"name": "invalid.illegal.character_not_allowed_here.java"
 				},
 				{
@@ -160,7 +159,7 @@
 					]
 				},
 				{
-					"match": "(@)(interface)\\s+([\\w$]*)|((@)\\s*([\\w$]+))",
+					"match": "(@)(interface)\\s+((?![0-9])[\\w$]*)|((@)\\s*((?![0-9])[\\w$]+))",
 					"name": "meta.declaration.annotation.java",
 					"captures": {
 						"1": {
@@ -306,7 +305,7 @@
 			]
 		},
 		"class": {
-			"begin": "(?=[\\w$]?[\\w$\\s-]*\\b(?:class|(?<!@)interface|enum)\\s+[\\w$]+)",
+			"begin": "(?=(?![0-9])[\\w$]?[\\w$\\s-]*\\b(?:class|(?<!@)interface|enum)\\s+(?![0-9])[\\w$]+)",
 			"end": "}",
 			"endCaptures": {
 				"0": {
@@ -674,7 +673,7 @@
 			]
 		},
 		"enums": {
-			"begin": "^\\s*([\\w$\\s]*)(enum)\\s+([\\w$]+)",
+			"begin": "^\\s*([\\w$\\s]*)(enum)\\s+((?![0-9])[\\w$]+)",
 			"beginCaptures": {
 				"1": {
 					"patterns": [
@@ -754,7 +753,7 @@
 									"include": "#comments"
 								},
 								{
-									"begin": "\\b([\\w$]+)\\b",
+									"begin": "\\b((?![0-9])[\\w$]+)\\b",
 									"beginCaptures": {
 										"1": {
 											"name": "constant.other.enum.java"
@@ -864,7 +863,7 @@
 					"name": "storage.modifier.$1.java"
 				},
 				{
-					"match": "(?<!\\.)([a-zA-Z$_][a-zA-Z0-9$_]*)(?=\\s*<)",
+					"match": "(?<!\\.)([a-zA-Z$_][\\w$]*)(?=\\s*<)",
 					"captures": {
 						"1": {
 							"name": "storage.type.java"
@@ -875,7 +874,7 @@
 					"include": "#primitive-arrays"
 				},
 				{
-					"match": "[a-zA-Z$_][a-zA-Z0-9$_]*",
+					"match": "[a-zA-Z$_][\\w$]*",
 					"name": "storage.type.generic.java"
 				},
 				{
@@ -1020,7 +1019,7 @@
 		"methods": {
 			"patterns": [
 				{
-					"begin": "(?=\\w.*\\()",
+					"begin": "(?=(?![0-9])[\\w$].*\\()",
 					"end": "(?=\\{|;)",
 					"patterns": [
 						{
@@ -1030,7 +1029,7 @@
 							"include": "#all-types"
 						},
 						{
-							"match": "\\w+(?=\\()",
+							"match": "(?![0-9])[\\w$]+(?=\\()",
 							"name": "entity.name.function.java"
 						},
 						{
@@ -1219,7 +1218,7 @@
 		"properties": {
 			"patterns": [
 				{
-					"begin": "(\\.)([a-zA-Z_$][a-zA-Z0-9_$]*)(?=\\()",
+					"begin": "(\\.)([a-zA-Z_$][\\w$]*)(?=\\()",
 					"beginCaptures": {
 						"1": {
 							"name": "punctuation.separator.period.java"
@@ -1236,7 +1235,7 @@
 					]
 				},
 				{
-					"match": "(\\.)([a-zA-Z_$][a-zA-Z0-9_$]*)",
+					"match": "(\\.)([a-zA-Z_$][\\w$]*)",
 					"captures": {
 						"1": {
 							"name": "punctuation.separator.period.java"
@@ -1245,6 +1244,47 @@
 							"name": "variable.other.object.property.java"
 						}
 					}
+				}
+			]
+		},
+		"record": {
+			"begin": "\\b(record)\\b",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.declaration.record.java"
+				}
+			},
+			"end": "\\{",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.section.record.begin.bracket.curly.java"
+				}
+			},
+			"name": "meta.record.java",
+			"patterns": [
+				{
+					"include": "#storage-modifiers"
+				},
+				{
+					"include": "#generics"
+				},
+				{
+					"include": "#comments"
+				},
+				{
+					"captures": {
+						"1": {
+							"name": "entity.name.type.record.java"
+						},
+						"2": {
+							"name": "punctuation.definition.parameters.begin.bracket.round.java"
+						}
+					},
+					"match": "([a-zA-Z_$][\\w$]*)\\s*(\\()"
+				},
+				{
+					"match": "[a-zA-Z_$][\\w$]*",
+					"name": "variable.parameter.java"
 				}
 			]
 		},
